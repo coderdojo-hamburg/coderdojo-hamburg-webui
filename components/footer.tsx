@@ -1,8 +1,14 @@
 import Link from "next/link"
-import { DrupalMenuLinkContent } from "next-drupal"
+
+export interface MyDrupalMenuItem {
+  title: string;
+  url: string;
+ id: string;
+}
+
 
 interface FooterProps {
-  links: DrupalMenuLinkContent[]
+  links: MyDrupalMenuItem[]
 }
 
 export function Footer({ links }: FooterProps) {
@@ -11,14 +17,14 @@ export function Footer({ links }: FooterProps) {
       <div className="container px-6 py-12 mx-auto">
         <div className="flex flex-col items-center justify-between text-sm md:flex-row">
           <p className="mb-6 md:mb-0">
-            © {new Date().getFullYear()} Next.js + Drupal
+            
           </p>
           {links?.length ? (
             <ul className="flex gap-4">
               {links.map((link) => (
                 <li key={link.id}>
                   <Link href={link.url} passHref>
-                    <a>{link.title}</a>
+                    {link.title}
                   </Link>
                 </li>
               ))}
